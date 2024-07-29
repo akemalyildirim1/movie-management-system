@@ -1,73 +1,91 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Movie Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Table of contents
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+* [General Informations](#general-informations)
+* [Installation](#installation)
+* [How To Run It?](#how-to-run-it)
+* [How To Test It?](#how-to-test-it)
+* [Migrations](#migrations)
 
-## Description
+## General Informations:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+`movie-management-system` is a backend application that provides an HTTP
+REST API to manage movies. It is developed by using NestJS with TypeScript. Node 22
+is used as the runtime environment.
 
 ## Installation
 
-```bash
-$ npm install
-```
-
-## Running the app
+Run:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Test
+## How To Run It?
+
+Run
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
 
-## Support
+### Environment Variables
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+You need to export environment variables to run the application.
 
-## Stay in touch
+The variables that you need to export are listed:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+PORT='8000'
+DB_HOST='localhost'
+DB_USERNAME='username'
+DB_PASSWORD='password'
+DB_NAME='postgres'
+DB_PORT='5432'
+JWT_SECRET='supersecret'
+```
 
-## License
+## How To Test It?
 
-Nest is [MIT licensed](LICENSE).
+**Please be sure that you exported test environment variables before running below commands.**
+
+Firstly, you need a database to run tests. You can use docker-compose to create a test database.
+
+```bash
+docker-compose -f docker-compose.test.yml up -d
+```
+
+To create test database, you need to run migrations:
+
+```bash
+./node_modules/db-migrate/bin/db-migrate up
+```
+
+To run tests, run:
+
+```bash
+npm run test
+```
+
+To run e2e tests, run:
+
+```bash
+npm run test:e2e
+```
+
+If you want to see the test coverage, run:
+
+```bash
+npm run test:cov
+```
+
+## Migrations
+
+You need to run migrations before running the application or testing.
+
+**[db-migrate](https://www.npmjs.com/package/db-migrate) is used to manage migrations.**
+
+```bash
+./node_modules/db-migrate/bin/db-migrate up
+```
