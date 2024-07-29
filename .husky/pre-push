@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Pre-push hook started to run..."
+npm run test

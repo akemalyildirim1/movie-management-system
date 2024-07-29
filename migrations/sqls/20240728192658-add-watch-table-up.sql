@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS watch_history (
+    id SERIAL PRIMARY KEY,
+    ticket_id INT NOT NULL UNIQUE REFERENCES tickets(id)  ON DELETE CASCADE,
+    CREATED_AT TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+SELECT setval('watch_history_id_seq', 1000);

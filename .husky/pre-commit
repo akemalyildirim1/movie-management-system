@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+echo "Pre-commit hook started to run..."
+npx format-imports ./src
+npm run lint
+npm run build
